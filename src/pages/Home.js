@@ -2,6 +2,8 @@ import React from 'react'
 import Grid from '@material-ui/core/Grid'
 
 import Cards from '../components/Cards'
+// import Slider from '../components/Slider'
+
 import api from '../utils/api'
 import Skeleton from 'react-loading-skeleton';
 
@@ -26,7 +28,8 @@ class Home extends React.Component {
         const { isLoading, latestNews } = this.state
 
         return (
-        <div>
+        <div style={{ marginTop: '10px' }}>
+        {/* <Slider /> */}
             <Grid container spacing={3}>
                 {isLoading &&       
                     Array.from({ length: 10}, (_, index) => (
