@@ -3,14 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "bloomer": "^0.6.5",
-    "bulma": "^0.7.4",
-    "bulmaswatch": "^0.7.2",
+    "@material-ui/core": "^4.1.2",
+    "@material-ui/icons": "^4.2.1",
+    "dayjs": "^1.8.14",
     "node-sass": "^4.12.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-loading-skeleton": "^1.1.2",
+    "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.0",
-    "serve": "^11.0.2"
+    "serve": "^11.0.2",
+    "styled-components": "^4.3.2"
   },
   "scripts": {
     "dev": "react-scripts start",
