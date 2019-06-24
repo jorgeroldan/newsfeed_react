@@ -18,13 +18,27 @@ class Category extends React.Component {
     }
     
     async componentDidMount() {
-        console.log('this.props', this.props)
-        // this.setState({isLoading: true})
-        // const categoriesNews = await api.category()
-        // console.log('categoriesNews', categoriesNews)
-
-        // this.setState({ categoriesNews: categoriesNews.slice(0,10), isLoading: false})
+        console.log('Monte el category')
+        this.fetchCategoriesNews()
     }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.match.params.category !== this.props.match.params.category) {
+          this.fetchCategoryNews()
+        }
+    }
+
+ 
+    async fetchCategoriesNews () {
+        const { category } = this.props.match.params
+        const categoryId = categoriesId[category]
+ 
+        this.setState({isLoading: true})
+        const categoriesNews = await api.category(categoryId)
+
+        this.setState({ categoriesNews: categoriesNews.slice(0,10), isLoading: false})
+    }
+
 
     render () {
         const { isLoading, categoriesNews } = this.state

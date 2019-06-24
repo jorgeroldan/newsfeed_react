@@ -2,8 +2,8 @@ import React, {Component} from 'react'
 
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import {withRouter} from 'react-router-dom'
-import {categoriesId} from  '../../utils/constants'
+import { withRouter } from 'react-router-dom'
+import { categoriesId } from '../../utils/constants'
 
 const categoriesNames = Object.keys(categoriesId)
 
