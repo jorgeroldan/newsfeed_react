@@ -14,8 +14,19 @@ const api = {
         } catch (error) {
             console.log(error)
         }
+    }, 
+    category: async (categoryId = '' ) => {
+        try {
+            const response = await fetch(`${BASE_URL}/news/category/${categoryId}`)
+            const data = await response.json()
+
+            return data
+        } catch (error) {
+            console.log(error)
+        }
     }
 }
+
 
 
 

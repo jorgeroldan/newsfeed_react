@@ -1,33 +1,46 @@
-import React from 'react'
+import React, {Component} from 'react'
 
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-
-const categoriesId = {
-    politica: '1', 
-    internacionales: '2', 
-    tecnologia: '3', 
-    espectaculos: '4', 
-    deportes: '5', 
-}
+import {withRouter} from 'react-router-dom'
+import {categoriesId} from  '../../utils/constants'
 
 const categoriesNames = Object.keys(categoriesId)
 
-const Nav = () => {
+class Nav extends Component {
+    state = {
+        value: 0, 
+    }
+    
+    handleNavigate = (index) => {
+        this.setState({value: index})
+        
+        const { history } = this.props
 
-    return (
-        <Tabs
-          value={0}
-          variant="fullWidth"
-          textColor="primary"
-          indicatorColor="primary"
-          onChange={(_,category) => console.log({ category })}
-        >
-          {categoriesNames.map(category => (
-              <Tab key={category} label={category} />
-          ))}
-        </Tabs>
-    )
+        const category = categoriesNames[index]
+        history.push(category === 'home' ? '/' : `/categorias/${category}`)
+
+    }
+
+    render () {
+        const { value } = this.state
+     
+        return (
+            <Tabs
+              value={value}
+              variant="fullWidth"
+              textColor="primary"
+              indicatorColor="primary"
+              onChange={(_event,index) => this.handleNavigate(index)}
+            >
+              {categoriesNames.map(category => (
+                  <Tab key={category} label={category} />
+              ))}
+            </Tabs>
+        )
+
+    }
+
 }
 
-export default Nav 
+export default withRouter(Nav) 
