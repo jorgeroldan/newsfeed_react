@@ -9,9 +9,13 @@ class SimpleSlider extends Component {
       news: props.data
     }
     
+    
   }
 
+  
   render() {
+    console.log('props en el slider', this.state.news)
+    
     const destacadas = this.state.news.map(destacada =>{
       return (<SliderItem data={destacada} key={destacada.url}/>)
     })

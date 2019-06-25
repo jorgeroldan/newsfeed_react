@@ -23,7 +23,6 @@ class Home extends React.Component {
     async componentDidMount() {
         this.setState({isLoading: true})
         const latestNews = await api.latest()
-        console.log('latestNews', latestNews)
 
         this.setState({ 
             destacadas: latestNews.slice(0,3), 
