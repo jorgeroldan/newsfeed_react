@@ -5,38 +5,37 @@ import Cards from '../components/Cards'
 
 import api from '../utils/api'
 import Skeleton from 'react-loading-skeleton';
-import {categoriesId} from '../utils/constants'
 
 
-class Category extends React.Component {
+class Search extends React.Component {
     state = {
         isLoading: false, 
-        categoriesNews: []
+        newsSearched: []
     }
     
     componentDidMount() {
-        this.fetchCategoriesNews()
+        this.fetchSearchNews()
     }
 
     componentDidUpdate(prevProps) {
-        if (prevProps.match.params.category !== this.props.match.params.category) {
-          this.fetchCategoriesNews()
+        if (prevProps.match.params.slug !== this.props.match.params.slug) {
+          this.fetchSearchNews()
         }
     }
  
-    async fetchCategoriesNews () {
-        const { category } = this.props.match.params
-        const categoryId = categoriesId[category]
+    async fetchSearchNews () {
+        const term = this.props.match.params.slug
+        console.log('term', term)
 
         this.setState({isLoading: true})
-        const categoriesNews = await api.category(categoryId)
+        const newsSearched = await api.search(term)
 
-        this.setState({ categoriesNews: categoriesNews.slice(0,10), isLoading: false})
+        this.setState({ newsSearched: newsSearched.slice(0,10), isLoading: false})
     }
 
 
     render () {
-        const { isLoading, categoriesNews } = this.state
+        const { isLoading, newsSearched } = this.state
 
         return (
         <div style={{ marginTop: '10px' }}>
@@ -48,10 +47,10 @@ class Category extends React.Component {
                         </Grid>
                         ))}
 
-                {categoriesNews.length > 0 && 
-                    categoriesNews.map(latestNew => (
-                        <Grid item xs={4} key={latestNew.news_id} >
-                            <Cards data={latestNew} />
+                {newsSearched.length > 0 && 
+                    newsSearched.map(foundedNew => (
+                        <Grid item xs={4} key={foundedNew.news_id} >
+                            <Cards data={foundedNew} />
                         </Grid>
                 ))}
             </Grid>
@@ -60,4 +59,4 @@ class Category extends React.Component {
     }
 }
 
-export default Category 
+export default Search 

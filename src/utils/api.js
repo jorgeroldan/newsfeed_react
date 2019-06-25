@@ -24,6 +24,16 @@ const api = {
         } catch (error) {
             console.log(error)
         }
+    }, 
+    search: async (term = '' ) => {
+        try {
+            const response = await fetch(`${BASE_URL}/news/search/${term}`)
+            const data = await response.json()
+
+            return data
+        } catch (error) {
+            console.log(error)
+        }
     }
 }
 
