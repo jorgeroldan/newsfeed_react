@@ -17,22 +17,20 @@ class Category extends React.Component {
         categoriesNews: []
     }
     
-    async componentDidMount() {
-        console.log('Monte el category')
+    componentDidMount() {
         this.fetchCategoriesNews()
     }
 
     componentDidUpdate(prevProps) {
         if (prevProps.match.params.category !== this.props.match.params.category) {
-          this.fetchCategoryNews()
+          this.fetchCategoriesNews()
         }
     }
-
  
     async fetchCategoriesNews () {
         const { category } = this.props.match.params
         const categoryId = categoriesId[category]
- 
+
         this.setState({isLoading: true})
         const categoriesNews = await api.category(categoryId)
 

@@ -1,10 +1,10 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom'
 import styled from 'styled-components'
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
-
 
 
 const StyledToolbar = styled(Toolbar)`
@@ -27,20 +27,22 @@ const StyledTextField = styled(TextField)`
     }
 `
 
-function ButtonAppBar() {
+function ButtonAppBar(props) {
+  // const { history } = this.props
 
   return (
       <AppBar position="static">
         <StyledToolbar>
           <Typography variant="h6"> News Feeds</Typography>
           <StyledTextField
+                onKeyPress={(event)=>event.key === 'Enter' ? props.history.push(`/search/${event.target.value}`):null}
                 label="Buscar noticias"
                 margin="dense"
                 variant="outlined"
-            />
+            />       
         </StyledToolbar>
       </AppBar>
   );
 }
 
-export default ButtonAppBar;
+export default withRouter(ButtonAppBar);

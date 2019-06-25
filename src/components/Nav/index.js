@@ -19,7 +19,7 @@ class Nav extends Component {
 
         const category = categoriesNames[index]
         history.push(category === 'home' ? '/' : `/categorias/${category}`)
-
+       
     }
 
     render () {

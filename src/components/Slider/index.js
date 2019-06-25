@@ -1,8 +1,8 @@
-import React from "react";
+import React, {Component} from "react";
 import Slider from "react-slick";
 import SliderItem from '../SliderItem'
 
-class SimpleSlider extends React.Component {
+class SimpleSlider extends Component {
   constructor(props){
     super(props)
     this.state = {
