@@ -26,7 +26,6 @@ const api = {
         }
     }, 
     search: async (term = '' ) => {
-        console.log('term', term)
         try {
             const response = await fetch(`${BASE_URL}/search/${term}`)
             const data = await response.json()

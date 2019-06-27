@@ -1,5 +1,8 @@
 import React from 'react'
 import Grid from '@material-ui/core/Grid'
+import Button from '@material-ui/core/Button'
+import { withStyles } from '@material-ui/core/styles';
+
 
 import Cards from '../components/Cards'
 import Slider from '../components/Slider'
@@ -11,7 +14,35 @@ import Skeleton from 'react-loading-skeleton';
 
 api.latest()
 
+const styles = theme => ({
+    root: {
+      flexGrow: 1,
+    },
+    paper: {
+      padding: theme.spacing(2),
+      textAlign: 'center',
+      color: theme.palette.text.secondary,
+      height:'10px'
+    },
+    button: {
+      margin: '30px auto 40px auto',
+      display:'block'
+  
+    },
+    input: {
+      display: 'none',
+    },
+    loadEnd:{
+      margin: '30px auto 40px auto',
+      display:'block',
+      fontFamily:'Roboto',
+      textAlign:'center'
+    },
+  });
+
 class Home extends React.Component {
+
+    
     state = {
         isLoading: false, 
         latestNews: [], 
@@ -34,22 +65,25 @@ class Home extends React.Component {
         this.setState({isLoading: true})
         const latestNews = await api.latest()
 
-        console.log('fetcheo lastest news', latestNews)
         this.setState({ 
             destacadas: latestNews.slice(0,3), 
             secundarias: latestNews.slice(3,5), 
-            grillaRoll: latestNews.slice(5,9), 
+            grillaRoll: latestNews.slice(5,20), 
             isLoading: false})
     }
 
-
+    
 
     render () {
         const { isLoading, secundarias, grillaRoll, destacadas } = this.state
-
+ 
         console.log('destacada despues fetch', destacadas)
         console.log('secundarias despues fetch', secundarias)
         console.log('grillaRoll despues fetch', grillaRoll)
+
+        // const [rollNumer,setrollNumer] = useState(13)
+        // const [rollNumerMax] = useState(grillaRoll.length - 9)
+
         return (        
         
         <div style={{ marginTop: '20px' }}>
@@ -63,7 +97,7 @@ class Home extends React.Component {
                 {isLoading &&       
                     Array.from({ length: 2}, (_, index) => (
                         <Grid item xs={12} sm={6} key={index} >
-                            <Skeleton width={440} height={334} />
+                            <Skeleton width={436} height={310} />
                         </Grid>
                         ))}
 
@@ -91,10 +125,24 @@ class Home extends React.Component {
                         </Grid>
                 ))}
             </Grid>
+
+            <Grid style={{ marginTop: '50px' }} container direction="row" justify="center" alignItems="center">
+
+                    {!isLoading && <Button 
+                        variant="contained" 
+                        onClick={()=>console.log('cargar más')}
+                        color="primary" 
+                        >
+                        Cargar más
+                    </Button>}
+    
+            </Grid>
+
+
             <Footer />
         </div>
         )
     }
 }
 
-export default Home 
+export default withStyles(styles)(Home)
