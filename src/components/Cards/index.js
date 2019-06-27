@@ -11,7 +11,7 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
     card: {
-      maxWidth: 345,
+      maxWidth: '100%',
       height: '100%',
     },
     media: {
@@ -25,7 +25,7 @@ function MediaCard({data}) {
 
   return (
     <Card className={classes.card}>
-      <CardActionArea>
+      <CardActionArea >
         <CardMedia
           component="img"
           alt="Noticia"
@@ -33,7 +33,7 @@ function MediaCard({data}) {
           image={img_url}
           title={title}
         />
-        <CardContent>
+        <CardContent >
           <Typography gutterBottom variant="body1" component="h4">
             {title}
           </Typography>

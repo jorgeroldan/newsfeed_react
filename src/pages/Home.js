@@ -87,7 +87,7 @@ class Home extends React.Component {
                 {grillaRoll.length > 0 && 
                     grillaRoll.map(rollNew => (
                         <Grid item xs={4} key={rollNew.news_id} >
-                            <Cards data={rollNew} />
+                            <Cards data={rollNew} max-width={100} />
                         </Grid>
                 ))}
             </Grid>
