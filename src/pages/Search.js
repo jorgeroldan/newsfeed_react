@@ -18,14 +18,13 @@ class Search extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (prevProps.match.params.slug !== this.props.match.params.slug) {
+        if (prevProps.match.params.term !== this.props.match.params.term) {
           this.fetchSearchNews()
         }
     }
  
     async fetchSearchNews () {
-        const term = this.props.match.params.slug
-        console.log('term', term)
+        const term = this.props.match.params.term
 
         this.setState({isLoading: true})
         const newsSearched = await api.search(term)
@@ -36,6 +35,7 @@ class Search extends React.Component {
 
     render () {
         const { isLoading, newsSearched } = this.state
+        console.log('this.state', this.state)
 
         return (
         <div style={{ marginTop: '10px' }}>

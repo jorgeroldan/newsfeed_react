@@ -29,13 +29,15 @@ const StyledTextField = styled(TextField)`
 
 function ButtonAppBar(props) {
   // const { history } = this.props
+  // console.log('props en ButtonAppBar',this.props)
+  
 
   return (
       <AppBar position="static">
         <StyledToolbar>
           <Typography variant="h6"> News Feeds</Typography>
           <StyledTextField
-                onKeyPress={(event)=>event.key === 'Enter' ? props.history.push(`/search/${event.target.value}`):null}
+                onKeyPress={(event)=>event.key === 'Enter' ? props.history.push(`search/${event.target.value}`):null}
                 label="Buscar noticias"
                 margin="dense"
                 variant="outlined"

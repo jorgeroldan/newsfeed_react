@@ -2,19 +2,19 @@ import React, {Component} from "react";
 import Slider from "react-slick";
 import SliderItem from '../SliderItem'
 
+
 class SimpleSlider extends Component {
   constructor(props){
     super(props)
+    // console.log('props', props)
     this.state = {
       news: props.data
     }
-    
-    
   }
 
   
   render() {
-    console.log('props en el slider', this.state.news)
+    // console.log('props en el slider', this.state.news)
     
     const destacadas = this.state.news.map(destacada =>{
       return (<SliderItem data={destacada} key={destacada.url}/>)

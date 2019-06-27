@@ -21,25 +21,41 @@ class Home extends React.Component {
     }
     
     async componentDidMount() {
+        this.fetchNews()
+    }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.match.path !== this.props.match.path) {
+          this.fetchNews()
+        }
+    }
+ 
+    async fetchNews () {
         this.setState({isLoading: true})
         const latestNews = await api.latest()
 
+        console.log('fetcheo lastest news', latestNews)
         this.setState({ 
             destacadas: latestNews.slice(0,3), 
             secundarias: latestNews.slice(3,5), 
-            grillaRoll: latestNews.slice(5,20), 
+            grillaRoll: latestNews.slice(5,9), 
             isLoading: false})
     }
+
+
 
     render () {
         const { isLoading, secundarias, grillaRoll, destacadas } = this.state
 
+        console.log('destacada despues fetch', destacadas)
+        console.log('secundarias despues fetch', secundarias)
+        console.log('grillaRoll despues fetch', grillaRoll)
         return (        
         
-        <div style={{ marginTop: '10px' }}>
+        <div style={{ marginTop: '20px' }}>
         
             <Grid container spacing={3}>
-                <Slider data={destacadas} />
+               { isLoading && <Slider data={destacadas} /> }
             </Grid>
             
             <Grid container spacing={3}>

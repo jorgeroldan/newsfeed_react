@@ -26,6 +26,7 @@ class Category extends React.Component {
  
     async fetchCategoriesNews () {
         const { category } = this.props.match.params
+
         const categoryId = categoriesId[category]
 
         this.setState({isLoading: true})

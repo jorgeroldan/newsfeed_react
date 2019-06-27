@@ -7,6 +7,7 @@ import Home from '../../pages/Home'
 import Header from  '../Header'
 import Nav from '../Nav'
 import Category from '../../pages/Category'
+import Search from '../../pages/Search'
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -25,6 +26,7 @@ class App extends Component {
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/categorias/:category" exact component={Category} />
+            <Route path="/search/:term" exact component={Search} />
           </Switch>
         </Container>
       </Router>
